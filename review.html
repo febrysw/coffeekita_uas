@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/custom.css">
+        <title>Coffe Kita</title>
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">CoffeKita</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="produk.html">Produk</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="reservasi.html">Reservasi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="tentang.html">Tentang</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <section>
+        <div class="container">
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-secondary ambilKomen">Refresh</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <form>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">   
+                                        <select class="form-control" name="produk" id="select-element">
+                                            <option>Pilih Produk</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">                
+                                        <input name="nama" type="text" class="form-control" placeholder="Nama">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-12">
+                                        <textarea name="komentar" class="form-control catatan" rows="4" placeholder="Komentar"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn tombol-custom tambahKomen">Submit</button>
+                            </form>
+                        </div>
+                        <br>
+                        <div class="col-md-9">
+                            <table class="table">
+                                <thead class="tabel-header">
+                                    <tr>
+                                        <th>Produk</th>
+                                        <th>Nama</th>
+                                        <th>Komen</th>
+                                        <th>Nilai</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="tabel-body">     
+                                    <tr>
+                                        <td>ROBUSTA</td>
+                                        <td>Anonymous</td>
+                                        <td>Kualitas Kopi sangat baik</td>
+                                        <td>100</td>
+                                        <td>
+                                            <a href="#"><button type="button" class="btn btn-success">Ubah</button></a>
+                                            <a href="#"><button type="button" class="btn btn-danger">Hapus</button></a>
+                                        </td>
+                                    </tr>               
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <script>
+                var dataObj=[];
+                $(document).ready(function(){
+                    ambilProduk();
+                    ambilSemuaKomen();
+                    
+                    $(".ambilKomen").click(ambilSemuaKomen);
+                    $(".tambahKomen").click(tambahKomen);
+                    $("tbody").on("click",".ubahKomen",null,function() {
+                    var id = $(this).attr("id");
+                    ambilKomenbyId(id);
+                    });
+        
+                    $("tbody").on("click",".hapusKomen",null,function(){
+                    var id = $(this).attr("id");
+                    hapusKomen(id);
+                    });
+        
+                    function ambilProduk() {
+                    $.ajax(
+                        {
+                        type:'GET',
+                        url: 'http://localhost:8888/products',
+                        success: function(data){
+                            $("#select-element").empty();
+                            var list = [];
+        
+                            $.each(data, function (index, item) {
+                            list.push(item)
+                            })
+        
+                            $.each(list, function (key, value){
+                            $("#select-element").append('<option value="'+value.id+'">'+value.namaProduk+'</option>');
+                            })
+                        },
+                        error:function(){
+                            console.log("error");
+                        }
+                        }
+                    );
+                    }
+        
+                    function getProductbyId(param) {
+                        $.ajax(
+                        {
+                            type:'GET',
+                            url: 'http://localhost:8888/products/'+param.produkId,
+                            success:function(data){
+                                return $("tbody").append("<tr>" + "<td>"+data.namaProduk+"</td>"+"<td>"+param.nama+"</td>"+ "<td>"+ param.komentar+"</td>"+ "<td>"+ param.nilai+"</td>"+"<td><button id="+param.id+" class='ubahKomen'>Ubah</button><button id="+param.id+" class='hapusKomen'>Delete</button></td>"+"</tr>");
+                            },
+                            error:function(){
+                                console.log("error");
+                            }
+                        }
+                        );
+                    }
+        
+                    function ambilSemuaKomen() {
+                    $.ajax(
+                        {
+                        type:'GET',
+                        url: 'http://localhost:8888/reviews',
+                        success: function(data){
+                                $("tbody").empty();
+                                for(var i = 0; i < data.length; i++){
+                                    getProductbyId(data[i]);
+                                }
+                        },
+                        error:function(){
+                            console.log("error");
+                        }
+                        }
+                    );
+                    }
+        
+                    function getRandomInt(min, max) {
+                    return Math.round((min - 0.5) + Math.random() * (max - min + 1));
+                    }
+        
+                    function cekSara(data, komen) {
+                    return new Promise((resolve, reject) => {
+                        $.ajax(
+                        {
+                            type:'GET',
+                            url: 'http://localhost:8888/sara/',
+                            success: function(data){
+                            var ketemu = data.find(x => x.nama === komen);
+                            if(ketemu){
+                                console.log('sara');
+                                nilai = getRandomInt(1,50);
+                                resolve(nilai);
+                            }
+                            else{
+                                reject('tidak termasuk sara')
+                            }
+                            },
+                            error:function(error){
+                            reject(error);
+                            console.log("error");
+                            }
+                        });
+                    })
+                    }
+        
+                    function cekBaik(data, komen) {
+                        return new Promise((resolve, reject) => {
+                        $.ajax(
+                        {
+                            type:'GET',
+                            url: 'http://localhost:8888/baik/',
+                            success: function(data){
+                            var ketemu = data.find(x => x.nama === komen);
+                            if(ketemu){
+                                console.log('baik');
+                                nilai = getRandomInt(81,100);
+                                resolve(nilai);
+                            }
+                            else{
+                                reject('tidak termasuk baik')
+                            }
+                            },
+                            error:function(error){
+                            reject(error);
+                            console.log("error");
+                            }
+                        });
+                    })
+                    }
+        
+                    function ambilKomenbyId(id) {
+                    $.ajax(
+                        {
+                        type:'GET',
+                        url: 'http://localhost:8888/reviews/'+id,
+                        success: async function(data){
+                            const komen = prompt("Ubah Komentar");
+                            if (komen == null || komen == "") {
+                            alert("gagal");
+                            } else {
+                            cekKomen(data, komen);
+                            }
+                        },
+                        error:function(){
+                            console.log("error");
+                        }
+                        }
+                    );
+                    }
+        
+                    function cekKomen(data, komen) {
+                    cekSara(data, komen).then((nilaisara) => {
+                        ubahKomen(data, komen, nilaisara)
+                    }).catch((error)=>{
+                        cekBaik(data, komen).then((nilaibaik) => {
+                        ubahKomen(data, komen, nilaibaik)
+                        }).catch(()=>{
+                        nilaiselain = getRandomInt(51, 79)
+                        ubahKomen(data, komen, nilaiselain)
+                        })
+                    })
+                    }
+        
+                    function tambahKomen() {
+                    var data = new Object();
+                    data.produkId = $("select[name='produk']").val();
+                    data.nama = $("input[name='nama']").val();
+                    data.komentar = $("input[name='komentar']").val();
+                    $.ajax(
+                        {
+                        type:'POST',
+                        url: 'http://localhost:8888/reviews',
+                        data: JSON.stringify(data),
+                        contentType:'application/json',
+                        success:function(data){
+                            ambilSemuaKomen();
+                        },
+                        error:function(error){
+                            console.log(error);
+                        }
+                        }
+                    );
+                    }
+        
+                    function hapusKomen(id) {
+                    console.log("id",id);
+                    $.ajax(
+                        {
+                        type:'DELETE',
+                        url: 'http://localhost:8888/reviews/'+id,
+                        success:function(data){
+                            ambilSemuaKomen();
+                            console.log("Deleted unsuccessfully");
+                        },
+                        error:function(){
+                            console.log("error");
+                        }
+                        }
+                    );
+                    }
+        
+                    function ubahKomen(param, komen, nilai) {
+                    var data = new Object();
+                        data.produkId = param.produkId;
+                        data.nama = param.nama;
+                        data.komentar = komen;
+                        data.nilai = nilai;
+        
+                        $.ajax(
+                        {
+                            type:'PUT',
+                            url: 'http://localhost:8888/reviews/'+param.id,
+                            data: JSON.stringify(data),
+                            contentType:'application/json',
+                            success:function(data){
+                            ambilSemuaKomen();
+                            },
+                            error:function(error){
+                            console.log(error);
+                            }
+                        }
+                        );
+                    }
+                });
+            </script>
+        </section>
+    </div>    
+    <br><br>
+    <footer>        
+        <p>CoffeKita</p>
+    </footer>
+    <script src="js/jquery-3.2.1.slim.js"></script>
+    <script src="js/popper.js"></script>
+    <script src="js/bootstrap.js"></script>
+</html>

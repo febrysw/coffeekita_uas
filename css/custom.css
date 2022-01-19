@@ -1,0 +1,305 @@
+.navbar{
+    background-color: #0A514D;
+}
+.navbar-brand{
+    color: #19B892;
+    margin-left: 50px;
+}
+.navbar-nav a{
+    color: white;
+    margin: 0 20px 0 20px;
+}
+
+.navbar a:active{
+    color: yellow;
+}
+
+.navbar a:hover{
+    color: yellow;
+}
+
+
+/* posisi teks keunggulan */
+.keunggulan{
+    text-align: center;
+}
+.keunggulan-text1{
+    margin-top: 50px;
+    padding: 30px; 
+    background-color:#19B892; 
+    color:white;
+    font-size: 18px;
+}
+.keunggulan-text2{
+    margin-top: 50px;
+    padding: 30px; 
+    background-color:#0A514D;
+    color:white;
+    font-size: 18px;
+}
+
+
+/* judul font keunggulan */
+.f1{
+    font-size: 24px;
+    font-weight: bold;
+}
+.hq{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: bold;
+}
+.pmm{
+    font-size: 24px;
+    font-style: normal;
+    font-weight: bold;
+}
+
+
+/* top seller */
+.top-seller, h1{
+    text-align: center;
+    font-size: 36px;
+    font-weight: normal;
+}
+.top-seller-text{
+    margin: 0; 
+    padding:0; 
+    text-align:center;
+}
+.container1{
+    background-color: #ECECEC;
+}
+.rating{
+    font-size: 10px;
+    text-align: right;
+    margin-bottom: -18px;
+    padding-top: 4px;
+    padding-right: 8px;
+}
+.mcc{
+    font-size: 14px;
+    margin-top: -20px;
+    margin-bottom: 10px;
+}
+a.list-produk{
+    text-decoration: none;
+    color: black;
+}
+
+.harga-list-produk{
+    font-size: 14px;
+    background-color: #0A514D; 
+    border-top-left-radius:6px; 
+    border-top-right-radius:6px; 
+    color:white;
+}
+
+
+/* deskripsi robusta */
+.con11{
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+}
+.caprbst{
+    color: rgb(255, 255, 255);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+
+/* foto produk top seller */
+.gambar-produk{
+    width: 100%;
+}
+
+
+/* foto produk deskripsi kopi */
+.gambar-produk1{
+    width: 100%;
+}
+
+.gambar-produk2{
+    width: 100%;
+}
+.deskripsi-produk{
+    margin-top: 80px;
+}
+
+
+/* foto ruang */
+.ruang{
+    margin-top: 70px;
+    margin-bottom: 70px;
+    margin-left: 80px;
+}
+
+
+/* page simpan reservasi */
+.trmksh{
+    margin: 145px;
+}
+.isicontent{
+    text-align: center;
+}
+.thxu{
+    font-size: 24px;
+    color: #0A514D;
+}
+.pes1{
+    font-size: 36px;
+    color: #0A514D;
+}
+.email{
+    color: #0A514D;
+}
+/* page 2 produk */
+.container2{
+    background-color: #adf10e;
+}
+
+footer{
+    height: 30vh;
+    background-color: #0A514D;
+}
+footer p{
+    font-size: 20px;
+    text-align: right;
+    padding: 50px 120px 0 0;
+    color: white;
+}
+
+
+
+.judul-konten{
+    color: #0A514D;
+}
+.kategori-produk{
+    text-align: center;
+}
+a.nav-kategori{
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+}
+
+.nav-kategori{
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
+    text-align: center;
+}
+
+.nav-kategori2{
+    color: black;
+    font-size: 16px;
+    text-align: center;
+}
+
+.judul-konten2{
+    color: #0A514D;
+    text-align: left;
+    margin: 60px 0 20px 93px;
+}
+
+.judul-konten3{
+    color: #0A514D;
+    text-align: left;
+    margin: 60px 0 20px 0;
+    font-size: 25px;
+}
+
+.tombol-custom{
+    background-color: #0A514D;
+    color: white;
+}
+
+.catatan{
+    margin-left: 0.8%;
+}
+
+.kirim{
+    margin-bottom: 20px;
+}
+
+p.penilaian{
+    font-size: 24px;
+    color: #0A514D;
+}
+
+.tabel-header{
+    color:white;
+    background-color: #0A514D;
+    text-align: center;
+}
+
+.tabel-body{
+    text-align: center;
+    
+}
+
+.tabel-body td{
+    border: 1px solid #0A514D;
+}
+
+.judul-konten-shop{
+    color: #0A514D;
+    text-align: left;
+}
+
+.rating-shop{
+    text-align: left;
+    color: #0A514D;
+    font-size: 20px;
+}
+
+.harga-shop{
+    text-align: left;
+    color: #0A514D;
+    font-size: 25px;
+}
+
+.deskripsi-shop{
+    text-align: justify;
+    color: #0A514D;
+}
+
+.jumlah-shop{
+    text-align: left;
+    color: #0A514D;
+    font-weight: bold;
+    font-size: 16px;
+    padding-top: 8px;
+}
+
+.tombol-custom-shop{
+    background-color: #0A514D;
+    color: white;
+    width: 50px;
+}
+
+.produk-terkait{
+    font-weight: bold;
+    color: #0A514D;
+    font-size: 20px;
+    text-align: center;
+}
+
+.pembayaran{
+    font-weight: bold;
+    color: #0A514D;
+    text-align: center;
+    font-size: 13px;
+}
+
+.nominal-pembayaran{
+    margin-top: -10px;
+    font-weight: bold;
+    color: #0A514D;
+    font-size: 20px;
+    text-align: center;
+}
